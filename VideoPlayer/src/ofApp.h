@@ -3,8 +3,11 @@
 #include "ofMain.h"
 #include "MSATimer.h"
 
+#define SECONDS_FIRST_STAY      10
+#define SECONDS_SECOND_STAY     50
 
-class testApp : public ofBaseApp{
+
+class ofApp : public ofBaseApp{
     
 public:
     void setup();
@@ -22,15 +25,14 @@ public:
     void gotMessage(ofMessage msg);
     
     void setNumpadNumber();
-    void startFirstTimer();
-    void startSecondTimer();
-    
+    void setOverlayNumber(int num);
     
     vector<ofVideoPlayer>   videoPlayers;
     int                     currentVideo;
     
-    msa::Timer  firstTimer;
-    msa::Timer  secondTimer;
+    msa::Timer              timer;
     
-    bool bVideosLoaded;
+    int     overlayNumber;
+    bool    bVideosLoaded;
+    bool    bDrawNumOverlay;
 };

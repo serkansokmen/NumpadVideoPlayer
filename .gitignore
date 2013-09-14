@@ -86,5 +86,5 @@ Desktop.ini
 # Ignore settings file
 bin/data/settings.xml
 
-# Ignore soundbank files
-bin/data/soundbank/
+# Ignore videos folder
+VideoPlayer/bin/data/videos/
