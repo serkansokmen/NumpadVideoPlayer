@@ -4,6 +4,20 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
+    ofBackground(ofColor::orange);
+    
+    receiver.setup(PORT);
+    
+    Tweener.setMode(TWEENMODE_OVERRIDE);
+    
+    numCirclePosition.set(ofGetWidth() * .5, ofGetHeight() * .5);
+    numCircleRadius = MIN(ofGetWidth(), ofGetHeight()) * .4;
+    
+    alarmSound.loadSound("alarm.wav");
+    
+    largeText.init("font", 100);
+    smallText.init("font", 48);
+    
     // we don't have any videos loaded yet
     bVideosLoaded = false;
     
@@ -37,6 +51,8 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
+    Tweener.update();
+    
     if (bVideosLoaded){
         videoPlayers[currentVideo].update();
         if (videoPlayers[currentVideo].getPosition() == 1){
@@ -46,8 +62,28 @@ void ofApp::update(){
             currentVideo ++;
             if (currentVideo > videoPlayers.size()-1)
                 currentVideo = 0;
+            
+            if (!videoPlayers[currentVideo].isPlaying())
+                videoPlayers[currentVideo].play();
         }
     }
+    
+    // check for waiting messages
+	while(receiver.hasWaitingMessages()){
+		// get the next message
+		ofxOscMessage m;
+		receiver.getNextMessage(&m);
+        
+		if (m.getAddress() == "/set"){
+            overlayNumber = m.getArgAsInt32(0);
+            setOverlayNumber(overlayNumber);
+		}
+        
+        if (m.getAddress() == "/togglefullscreen"){
+            ofToggleFullscreen();
+        }
+        
+	}
 }
 
 //--------------------------------------------------------------
@@ -58,34 +94,53 @@ void ofApp::draw(){
         videoPlayers[currentVideo].draw(0, 0, ofGetWidth(), ofGetHeight());
     }
     
-    ofPoint numCirclePosition;
-    float   numCircleRadius;
+    bool    bDrawLarge = false;
     
     ofPushMatrix();
     ofPushStyle();
-    ofSetColor(255, 0, 0, 100);
     
     float seconds = timer.getSeconds();
-    cout << seconds << endl;
+//    float scale = 1;
     
     if (seconds < SECONDS_FIRST_STAY){
-        numCirclePosition.set(ofGetWidth()/2, ofGetHeight()/2);
-        numCircleRadius = MIN(ofGetWidth(), ofGetHeight()) * .4;
+        
         ofSetCircleResolution(300);
+        ofSetLineWidth(20);
+        Tweener.addTween(numCirclePosition.x, ofGetWidth() * .5, .2);
+        Tweener.addTween(numCirclePosition.y, ofGetHeight() * .5, .2);
+        Tweener.addTween(numCircleRadius, MIN(ofGetWidth(), ofGetHeight()) * .4, .2);
+        bDrawLarge = true;
+        
     } else if (seconds >= SECONDS_FIRST_STAY && seconds <= SECONDS_FIRST_STAY + SECONDS_SECOND_STAY) {
-        numCirclePosition.set(ofGetWidth()*.25, ofGetHeight()*.25);
-        numCircleRadius = MIN(ofGetWidth(), ofGetHeight()) * .2;
+        
         ofSetCircleResolution(75);
+        ofSetLineWidth(5);
+        Tweener.addTween(numCirclePosition.x, ofGetWidth() * .25, .2);
+        Tweener.addTween(numCirclePosition.y, ofGetHeight() * .25, .2);
+        Tweener.addTween(numCircleRadius, MIN(ofGetWidth(), ofGetHeight()) * .2, .2);
+        
     } else {
+        
         bDrawNumOverlay = false;
         timer.stop();
+        
     }
     
     if (bDrawNumOverlay){
+        
+        ofSetColor(255);
+        ofCircle(numCirclePosition, numCircleRadius * 1.1);
+        ofSetColor(255, 0, 0);
         ofCircle(numCirclePosition, numCircleRadius);
         
         ofSetColor(255, 255, 255);
-        ofDrawBitmapString(ofToString(overlayNumber), numCirclePosition);
+        if (bDrawLarge) {
+            largeText.setColor(255, 255, 255, 255);
+            largeText.drawCenter(numCirclePosition.x, numCirclePosition.y - 100);
+        } else {
+            smallText.setColor(255, 255, 255, 255);
+            smallText.drawCenter(numCirclePosition.x, numCirclePosition.y - 48);
+        }
         ofPopStyle();
         ofPopMatrix();
     }
@@ -96,7 +151,7 @@ void ofApp::keyPressed(int key){
     switch (key) {
         case 's':
             if (bVideosLoaded)
-                setOverlayNumber(32);
+                setOverlayNumber((int)ofRandom(1, 999));
             break;
             
         default:
@@ -131,9 +186,15 @@ void ofApp::dragEvent(ofDragInfo dragInfo){}
 //--------------------------------------------------------------
 #pragma mark - Timer
 void ofApp::setOverlayNumber(int num){
+    
     timer.stop();
     overlayNumber = num;
     timer.start();
+    
+    largeText.setText(ofToString(num));
+    smallText.setText(ofToString(num));
+    
+    alarmSound.play();
     
     bDrawNumOverlay = true;
 }

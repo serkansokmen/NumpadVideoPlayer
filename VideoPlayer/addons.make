@@ -1,4 +1,4 @@
-ofxGui
 ofxOsc
-ofxMSABPMTapper
 ofxMSATimer
+ofxTextSuite
+ofxTweener
