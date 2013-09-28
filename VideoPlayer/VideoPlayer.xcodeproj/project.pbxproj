@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		04BFA09E012998240B6D10D5 /* ofxTransitions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5178405CA9B380AC3B38441 /* ofxTransitions.cpp */; };
 		0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */; };
-		0CFE4912BCFFB141DE9B56EA /* ofxTextBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A972F24487534EDCD9F65A5 /* ofxTextBlock.cpp */; };
 		28090DEB5109115003E8F1C5 /* UdpSocketWin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5928AA323F5C2690B06C837D /* UdpSocketWin.cpp */; };
 		360D5B74D6C18FC57E0A099D /* ofxTweener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D852339534D186876F18A318 /* ofxTweener.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
@@ -79,6 +78,7 @@
 /* Begin PBXFileReference section */
 		00D6D32B84B099226431108C /* ofxOsc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOsc.h; path = ../../../addons/ofxOsc/src/ofxOsc.h; sourceTree = SOURCE_ROOT; };
 		029684CF678F70F6D3537A29 /* OscOutboundPacketStream.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscOutboundPacketStream.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.h; sourceTree = SOURCE_ROOT; };
+		08B4D373327B759468249F7E /* ofxCenteredTrueTypeFont.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxCenteredTrueTypeFont.h; path = ../../../addons/ofxCenteredTrueTypeFont/src/ofxCenteredTrueTypeFont.h; sourceTree = SOURCE_ROOT; };
 		0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxOscParameterSync.cpp; path = ../../../addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
 		193B78FC56A59A581D17A40B /* ofxTweener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTweener.h; path = ../../../addons/ofxTweener/src/ofxTweener.h; sourceTree = SOURCE_ROOT; };
 		19C22CD05D10F78B32FF80C6 /* ofApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofApp.cpp; path = src/ofApp.cpp; sourceTree = SOURCE_ROOT; };
@@ -94,15 +94,12 @@
 		63A47AC60FFAFC3BF093EC0F /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OscOutboundPacketStream.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.cpp; sourceTree = SOURCE_ROOT; };
 		65EEFA3DA3526E9CDD9C21F9 /* ofxOscBundle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxOscBundle.cpp; path = ../../../addons/ofxOsc/src/ofxOscBundle.cpp; sourceTree = SOURCE_ROOT; };
 		6B65E6930994CC4B2D2B8B33 /* OscPacketListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscPacketListener.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscPacketListener.h; sourceTree = SOURCE_ROOT; };
-		6E2523F527C90D088A3F2062 /* ofxTextSuite.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTextSuite.h; path = ../../../addons/ofxTextSuite/src/ofxTextSuite.h; sourceTree = SOURCE_ROOT; };
 		7689F8A0F3D0B7635A8C3104 /* ofxOscArg.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscArg.h; path = ../../../addons/ofxOsc/src/ofxOscArg.h; sourceTree = SOURCE_ROOT; };
-		7A972F24487534EDCD9F65A5 /* ofxTextBlock.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTextBlock.cpp; path = ../../../addons/ofxTextSuite/src/ofxTextBlock.cpp; sourceTree = SOURCE_ROOT; };
 		81967292BFC87A0144BD32C6 /* ofxOscSender.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxOscSender.cpp; path = ../../../addons/ofxOsc/src/ofxOscSender.cpp; sourceTree = SOURCE_ROOT; };
 		84F6287FA54B66C746947875 /* ofApp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofApp.h; path = src/ofApp.h; sourceTree = SOURCE_ROOT; };
 		8B30E93FD3D3475EED522A0E /* ofxOscBundle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscBundle.h; path = ../../../addons/ofxOsc/src/ofxOscBundle.h; sourceTree = SOURCE_ROOT; };
 		8C75AFC8774A62495DD53464 /* ofxOscReceiver.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscReceiver.h; path = ../../../addons/ofxOsc/src/ofxOscReceiver.h; sourceTree = SOURCE_ROOT; };
 		959D2212B3C31B65852B5DFB /* ofxTransitions.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTransitions.h; path = ../../../addons/ofxTweener/src/ofxTransitions.h; sourceTree = SOURCE_ROOT; };
-		9BC16030D23010D47C18C274 /* ofxTextBlock.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTextBlock.h; path = ../../../addons/ofxTextSuite/src/ofxTextBlock.h; sourceTree = SOURCE_ROOT; };
 		9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OscReceivedElements.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscReceivedElements.cpp; sourceTree = SOURCE_ROOT; };
 		9F7986DC4EB05E75FCE2C777 /* ofxOscSender.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscSender.h; path = ../../../addons/ofxOsc/src/ofxOscSender.h; sourceTree = SOURCE_ROOT; };
 		A2AAA8CA403479E6FCDF920E /* OscHostEndianness.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscHostEndianness.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscHostEndianness.h; sourceTree = SOURCE_ROOT; };
@@ -225,6 +222,14 @@
 			name = posix;
 			sourceTree = "<group>";
 		};
+		79362BEDEB3134B7BDA3E4C1 /* ofxCenteredTrueTypeFont */ = {
+			isa = PBXGroup;
+			children = (
+				B49B9D6C30702AD839414623 /* src */,
+			);
+			name = ofxCenteredTrueTypeFont;
+			sourceTree = "<group>";
+		};
 		86D2677079A3AF4A5A88E29A /* oscpack */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +257,14 @@
 			name = src;
 			sourceTree = "<group>";
 		};
+		B49B9D6C30702AD839414623 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				08B4D373327B759468249F7E /* ofxCenteredTrueTypeFont.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
 		BA6760AC87647DD61A92BD41 /* win32 */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,8 +278,8 @@
 			isa = PBXGroup;
 			children = (
 				E6053AB7FEC63D5F83825B88 /* ofxOsc */,
+				79362BEDEB3134B7BDA3E4C1 /* ofxCenteredTrueTypeFont */,
 				5D5C0AE687AC481A1CA3E1C2 /* ofxMSATimer */,
-				E7E250732F89FB84D5F7AC43 /* ofxTextSuite */,
 				1FDD577CD8B9901D5774D6C7 /* ofxTweener */,
 			);
 			name = addons;
@@ -317,16 +330,6 @@
 				8C75AFC8774A62495DD53464 /* ofxOscReceiver.h */,
 				81967292BFC87A0144BD32C6 /* ofxOscSender.cpp */,
 				9F7986DC4EB05E75FCE2C777 /* ofxOscSender.h */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		C45E851E0969285C22048D70 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				7A972F24487534EDCD9F65A5 /* ofxTextBlock.cpp */,
-				9BC16030D23010D47C18C274 /* ofxTextBlock.h */,
-				6E2523F527C90D088A3F2062 /* ofxTextSuite.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -396,14 +399,6 @@
 				38871A5825686AE018EC2BF0 /* libs */,
 			);
 			name = ofxOsc;
-			sourceTree = "<group>";
-		};
-		E7E250732F89FB84D5F7AC43 /* ofxTextSuite */ = {
-			isa = PBXGroup;
-			children = (
-				C45E851E0969285C22048D70 /* src */,
-			);
-			name = ofxTextSuite;
 			sourceTree = "<group>";
 		};
 		FF8CDF57858E9B94E3237115 /* ip */ = {
@@ -524,7 +519,6 @@
 				C4782ECC372420ACE0615B74 /* OscPrintReceivedElements.cpp in Sources */,
 				0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */,
 				879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */,
-				0CFE4912BCFFB141DE9B56EA /* ofxTextBlock.cpp in Sources */,
 				04BFA09E012998240B6D10D5 /* ofxTransitions.cpp in Sources */,
 				360D5B74D6C18FC57E0A099D /* ofxTweener.cpp in Sources */,
 			);
@@ -572,10 +566,10 @@
 					../../../addons/ofxOsc/libs/oscpack/src/ip/win32,
 					../../../addons/ofxOsc/libs/oscpack/src/osc,
 					../../../addons/ofxOsc/src,
+					../../../addons/ofxCenteredTrueTypeFont/libs,
+					../../../addons/ofxCenteredTrueTypeFont/src,
 					../../../addons/ofxMSATimer/libs,
 					../../../addons/ofxMSATimer/src,
-					../../../addons/ofxTextSuite/libs,
-					../../../addons/ofxTextSuite/src,
 					../../../addons/ofxTweener/libs,
 					../../../addons/ofxTweener/src,
 				);
@@ -621,10 +615,10 @@
 					../../../addons/ofxOsc/libs/oscpack/src/ip/win32,
 					../../../addons/ofxOsc/libs/oscpack/src/osc,
 					../../../addons/ofxOsc/src,
+					../../../addons/ofxCenteredTrueTypeFont/libs,
+					../../../addons/ofxCenteredTrueTypeFont/src,
 					../../../addons/ofxMSATimer/libs,
 					../../../addons/ofxMSATimer/src,
-					../../../addons/ofxTextSuite/libs,
-					../../../addons/ofxTextSuite/src,
 					../../../addons/ofxTweener/libs,
 					../../../addons/ofxTweener/src,
 				);

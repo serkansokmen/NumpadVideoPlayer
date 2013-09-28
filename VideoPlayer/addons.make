@@ -1,4 +1,4 @@
 ofxOsc
+ofxCenteredTrueTypeFont
 ofxMSATimer
-ofxTextSuite
 ofxTweener

@@ -3,25 +3,32 @@
 #include "ofMain.h"
 #include "ofxOsc.h"
 #include "ofxTweener.h"
-#include "ofxTextSuite.h"
+#include "ofxCenteredTrueTypeFont.h"
 #include "MSATimer.h"
 
 #define PORT 8000
 
-#define SECONDS_FIRST_STAY      2
-#define SECONDS_SECOND_STAY     5
+#define SECONDS_FIRST_STAY      10
+#define SECONDS_SECOND_STAY     50
 
+#define CAM_WIDTH               320
+#define CAM_HEIGHT              240
+
+#define FONT_SIZE_SMALL         80
+#define FONT_SIZE_LARGE         160
+
+#define TWEEN_SPEED             0.01
 
 using namespace msa;
 
 
 class ofApp : public ofBaseApp{
-    
+
 public:
     void setup();
     void update();
     void draw();
-    
+
     void keyPressed(int key);
     void keyReleased(int key);
     void mouseMoved(int x, int y );
@@ -31,22 +38,26 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
-    
+
     void setOverlayNumber(int num);
-    
+
+    void videoIdChanged(int &newId);
+
     ofxOscReceiver  receiver;
     Timer           timer;
     ofSoundPlayer   alarmSound;
-    
-    unsigned int    overlayNumber;
-    unsigned int    currentVideo;
+
+    ofFbo           videoFbo;
+
+    int     overlayNumber;
+    ofParameter<int>     currentVideo;
     bool            bVideosLoaded;
     bool            bDrawNumOverlay;
-    
+
     ofPoint         numCirclePosition;
     float           numCircleRadius;
-    
-    ofxTextBlock    largeText, smallText;
-    
-    vector<ofVideoPlayer>   videoPlayers;
+
+    ofxCenteredTrueTypeFont    largeFont, smallFont;
+
+    vector<ofVideoPlayer> videoPlayers;
 };
