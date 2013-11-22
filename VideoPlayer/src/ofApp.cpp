@@ -12,10 +12,45 @@ void ofApp::setup(){
 
     Tweener.setMode(TWEENMODE_OVERRIDE);
 
-    numCirclePosition.set(ofGetWidth() * .5, ofGetHeight() * .5);
-    numCircleRadius = MIN(ofGetWidth(), ofGetHeight()) * .4;
-
+    numRectangle.set(0, 0, ofGetWidth(), ofGetHeight());
+    
+    logoImg.loadImage("logo.png");
     alarmSound.loadSound("alarm.wav");
+    
+    XML.load("colorSettings.xml");
+    
+    // Font Color
+    if(XML.exists("//FONT_RED"))
+        fontColorR = XML.getValue<int>("//FONT_RED");
+    else
+        fontColorR = 255;
+    
+    if(XML.exists("//FONT_GREEN"))
+        fontColorG = XML.getValue<int>("//FONT_GREEN");
+    else
+        fontColorG = 255;
+    
+    if(XML.exists("//FONT_BLUE"))
+        fontColorB = XML.getValue<int>("//FONT_BLUE");
+    else
+        fontColorB = 255;
+    
+    // Rectangle Color
+    if(XML.exists("//RECT_RED"))
+        rectColorR = XML.getValue<int>("//RECT_RED");
+    else
+        rectColorR = 255;
+    
+    if(XML.exists("//RECT_GREEN"))
+        rectColorG = XML.getValue<int>("//RECT_GREEN");
+    else
+        rectColorG = 0;
+    
+    if(XML.exists("//RECT_BLUE"))
+        rectColorB = XML.getValue<int>("//RECT_BLUE");
+    else
+        rectColorB = 0;
+    
 
     smallFont.loadFont("font.ttf", FONT_SIZE_SMALL);
     largeFont.loadFont("font.ttf", FONT_SIZE_LARGE);
@@ -112,24 +147,21 @@ void ofApp::draw(){
     ofPushStyle();
 
     float seconds = timer.getSeconds();
-//    float scale = 1;
 
     if (seconds < SECONDS_FIRST_STAY){
 
-        ofSetCircleResolution(300);
-        ofSetLineWidth(20);
-        Tweener.addTween(numCirclePosition.x, ofGetWidth() * .5, TWEEN_SPEED);
-        Tweener.addTween(numCirclePosition.y, ofGetHeight() * .5, TWEEN_SPEED);
-        Tweener.addTween(numCircleRadius, MIN(ofGetWidth(), ofGetHeight()) * .4, TWEEN_SPEED);
+        Tweener.addTween(numRectangle.x, 0, TWEEN_SPEED);
+        Tweener.addTween(numRectangle.y, 0, TWEEN_SPEED);
+        Tweener.addTween(numRectangle.width, ofGetWidth(), TWEEN_SPEED);
+        Tweener.addTween(numRectangle.height, ofGetHeight(), TWEEN_SPEED);
         bDrawLarge = true;
 
     } else if (seconds >= SECONDS_FIRST_STAY && seconds <= SECONDS_FIRST_STAY + SECONDS_SECOND_STAY) {
 
-        ofSetCircleResolution(75);
-        ofSetLineWidth(5);
-        Tweener.addTween(numCirclePosition.x, ofGetWidth() * .25, TWEEN_SPEED);
-        Tweener.addTween(numCirclePosition.y, ofGetHeight() * .25, TWEEN_SPEED);
-        Tweener.addTween(numCircleRadius, MIN(ofGetWidth(), ofGetHeight()) * .2, TWEEN_SPEED);
+        Tweener.addTween(numRectangle.x, 80, TWEEN_SPEED);
+        Tweener.addTween(numRectangle.y, 80, TWEEN_SPEED);
+        Tweener.addTween(numRectangle.width, 360, TWEEN_SPEED);
+        Tweener.addTween(numRectangle.height, 360, TWEEN_SPEED);
 
     } else {
 
@@ -140,22 +172,26 @@ void ofApp::draw(){
 
     if (bDrawNumOverlay){
 
-        ofSetColor(255);
-        ofCircle(numCirclePosition, numCircleRadius * 1.1);
-        ofSetColor(255, 0, 0);
-        ofCircle(numCirclePosition, numCircleRadius);
+        ofSetColor(rectColorR, rectColorG, rectColorB);
+        ofRect(numRectangle);
 
-        ofSetColor(255, 255, 255);
+        ofPoint fontPos;
+        fontPos.set(numRectangle.getTopLeft().x + numRectangle.getWidth()/2,
+                    numRectangle.getTopLeft().y + numRectangle.getHeight()/2);
+        
+        ofSetColor(fontColorR, fontColorG, fontColorB);
         if (bDrawLarge) {
-            ofSetColor(ofColor::white);
-            largeFont.drawStringCentered(ofToString(overlayNumber), numCirclePosition.x, numCirclePosition.y);
+            largeFont.drawStringCentered(ofToString(overlayNumber), fontPos.x, fontPos.y);
         } else {
-            ofSetColor(ofColor::white);
-            smallFont.drawStringCentered(ofToString(overlayNumber), numCirclePosition.x, numCirclePosition.y);
+            smallFont.drawStringCentered(ofToString(overlayNumber), fontPos.x, fontPos.y);
         }
         ofPopStyle();
         ofPopMatrix();
     }
+    
+    ofSetColor(ofColor::white);
+    logoImg.draw(ofGetWidth() - logoImg.getWidth() - 20,
+                 ofGetHeight() - logoImg.getHeight() - 20);
 }
 
 //--------------------------------------------------------------
@@ -209,9 +245,6 @@ void ofApp::setOverlayNumber(int num){
 }
 
 void ofApp::videoIdChanged(int &newId){
-
-    cout << currentVideo << ", " << newId << endl;
-
     videoPlayers[newId].setPosition(0);
     videoPlayers[newId].play();
 }

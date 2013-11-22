@@ -29,6 +29,8 @@ public:
     
     ofxOscSender sender;
     
+    ofImage      logoImg;
+    
     BaseButton numpad1;
     BaseButton numpad2;
     BaseButton numpad3;
@@ -40,9 +42,10 @@ public:
     BaseButton numpad9;
     BaseButton numpad0;
     
-    BaseButton      setBtn, toggleFullscreenBtn;
+    BaseButton      setBtn, toggleVideoFullscreenBtn, toggleFullscreenBtn;
     
     string          overlayNumString;
     ofxCenteredTrueTypeFont font;
+    
     int             overlayNumber;
 };

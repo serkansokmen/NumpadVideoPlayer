@@ -4,15 +4,16 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    
     sender.setup(HOST, PORT);
     ofSetVerticalSync(false);
 
     ofSetWindowTitle("NUMPAD");
 
-    float numpadX = 20.f;
+    float numpadX = 242.0f;
     float numpadY = 80.f;
-    float btnWidth = 80.f;
-    float btnHeight = 80.f;
+    float btnWidth = 180.f;
+    float btnHeight = 120.f;
 
     numpad1.setup("1", ofRectangle(numpadX + btnWidth * 0, numpadY + btnHeight * 0, btnWidth, btnHeight), ofColor::white, ofColor::blueSteel, ofColor::white);
     numpad2.setup("2", ofRectangle(numpadX + btnWidth * 1, numpadY + btnHeight * 0, btnWidth, btnHeight), ofColor::white, ofColor::blueSteel, ofColor::white);
@@ -26,11 +27,14 @@ void ofApp::setup(){
     numpad0.setup("0", ofRectangle(numpadX + btnWidth * 1, numpadY + btnHeight * 3, btnWidth, btnHeight), ofColor::white, ofColor::blueSteel, ofColor::white);
 
     setBtn.setup("GOSTER", ofRectangle(numpadX + btnWidth * 0, numpadY + btnHeight * 4 + 10, btnWidth * 3, btnHeight / 2), ofColor::grey, ofColor::blueSteel, ofColor::white);
-    toggleFullscreenBtn.setup("TAM EKRAN", ofRectangle(numpadX + btnWidth * 0, numpadY + btnHeight * 4.5 + 12, btnWidth * 3, btnHeight / 2), ofColor::grey, ofColor::greenYellow, ofColor::grey);
-
-    overlayNumString = "000";
+    toggleVideoFullscreenBtn.setup("VIDEO TAM EKRAN", ofRectangle(numpadX + btnWidth * 0, numpadY + btnHeight * 4.5 + 12, btnWidth * 3, btnHeight / 2), ofColor::grey, ofColor::greenYellow, ofColor::grey);
+    toggleFullscreenBtn.setup("NUMPAD TAM EKRAN", ofRectangle(numpadX + btnWidth * 0, numpadY + btnHeight * 5 + 14, btnWidth * 3, btnHeight / 2), ofColor::grey, ofColor::green, ofColor::grey);
+    
+    overlayNumString = "";
     font.loadFont("font.ttf", NUMPAD_FONT_SIZE);
     overlayNumber = 0;
+    
+    logoImg.loadImage("logo.png");
 }
 
 //--------------------------------------------------------------
@@ -53,9 +57,14 @@ void ofApp::draw(){
     numpad0.draw();
 
     setBtn.draw();
+    toggleVideoFullscreenBtn.draw();
     toggleFullscreenBtn.draw();
 
     font.drawStringCentered(overlayNumString, ofGetWidth() * .5, 40);
+    
+    ofSetColor(ofColor::white);
+    logoImg.draw(ofGetWidth() - logoImg.getWidth() - 20,
+                 ofGetHeight() - logoImg.getHeight() - 20);
 }
 
 //--------------------------------------------------------------
@@ -140,10 +149,14 @@ void ofApp::mousePressed(int x, int y, int button){
         overlayNumString = ofToString(overlayNumber);
     }
 
-    if (toggleFullscreenBtn.inside(x, y)){
+    if (toggleVideoFullscreenBtn.inside(x, y)){
         ofxOscMessage m;
         m.setAddress("/togglefullscreen");
         sender.sendMessage(m);
+    }
+    
+    if (toggleFullscreenBtn.inside(x, y)){
+        ofToggleFullscreen();
     }
 
     if (bSendSetMessage) {
@@ -152,6 +165,9 @@ void ofApp::mousePressed(int x, int y, int button){
         m.setAddress("/set");
         m.addIntArg(overlayNumber);
         sender.sendMessage(m);
+        
+        overlayNumString = "";
+        overlayNumber = ofToInt(overlayNumString);
     }
 }
 

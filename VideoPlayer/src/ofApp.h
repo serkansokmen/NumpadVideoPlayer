@@ -17,7 +17,7 @@
 #define FONT_SIZE_SMALL         80
 #define FONT_SIZE_LARGE         160
 
-#define TWEEN_SPEED             0.01
+#define TWEEN_SPEED             0.5
 
 using namespace msa;
 
@@ -46,6 +46,8 @@ public:
     ofxOscReceiver  receiver;
     Timer           timer;
     ofSoundPlayer   alarmSound;
+    
+    ofImage logoImg;
 
     ofFbo           videoFbo;
 
@@ -54,10 +56,15 @@ public:
     bool            bVideosLoaded;
     bool            bDrawNumOverlay;
 
-    ofPoint         numCirclePosition;
-    float           numCircleRadius;
+    ofRectangle     numRectangle;
+    
+    float        fontColorR, fontColorG, fontColorB;
+    float        rectColorR, rectColorG, rectColorB;
 
     ofxCenteredTrueTypeFont    largeFont, smallFont;
+    
+    ofXml   XML;
+    string  xmlStructure;
 
     vector<ofVideoPlayer> videoPlayers;
 };
